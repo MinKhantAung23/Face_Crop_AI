@@ -1,73 +1,48 @@
-# React + TypeScript + Vite
+## ✂️ Face Crop App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### **The Intelligent Batch Image Cropper**
 
-Currently, two official plugins are available:
+The **Face Crop App** is a fast, client-side utility built with React and `face-api.js` designed for instant, automated facial recognition and precise cropping. It's ideal for quickly processing large batches of images for standardized formats like IDs, passports, or social media profile pictures.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The core workflow is: **Upload images or folders → Detect faces → Crop instantly.**
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### ✨ Key Features
 
-## Expanding the ESLint configuration
+* **Intelligent Face Detection:** Uses advanced face recognition models to accurately locate faces in bulk.
+* **Batch Processing:** Supports uploading entire folders or `.zip` archives for high-volume processing.
+* **Flexible Cropping Modes:**
+    * **Auto Crop Main Person:** Automatically selects and crops the largest or most centrally located face in an image.
+    * **Crop All Faces:** Extracts every detected face from every image.
+* **Precision Output:** Define exact output dimensions using **inches** (e.g., for passport photos), which the app converts to pixels using 96 DPI.
+* **Client-Side Processing:** All detection and cropping happens entirely in your browser, ensuring maximum privacy and speed (no images are uploaded to a server).
+* **Bulk Download:** Automatically bundles all cropped images into a single `.zip` file for easy download.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 🚀 Usage Guide
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+The application is designed to be simple and intuitive.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+#### **Step 1: Upload Images**
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Use one of the two main input methods in the "Upload Images" section:
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+* **Files/ZIP:** Select individual files or a compressed `.zip` file containing images.
+* **Folder:** Use the specialized input to select an entire folder for batch processing.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+#### **Step 2: Define Cropping Options (Optional)**
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+* **Crop Mode:** Choose between **"Auto crop main person"** (default) or **"Crop all faces."**
+* **Custom Size:** Enter a `Width (inches)` and `Height (inches)` for precise, standardized output sizes. Leave these fields blank for the app to auto-scale the crop based on the detected face size.
+
+#### **Step 3: Detect and Download**
+
+1.  Click the **"Detect & Crop Faces"** button. The app will load the images, run the detection models, and instantly crop the results.
+2.  Once processing is complete, a **"Cropped Faces"** section will appear with image previews.
+3.  Click the **"Download ZIP"** button to get a single archive of all your newly cropped images.
+
+### 🛠️ Technologies Used
+
+* **Frontend:** React, TypeScript, Tailwind CSS
+* **Face Detection:** `face-api.js` (Web-based AI library)
+* **File Handling:** `jszip` (for reading ZIPs), `file-saver` (for generating output ZIPs)
