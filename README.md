@@ -6,6 +6,7 @@ The **Face Crop App** is a fast, client-side utility built with React and `face-
 
 The core workflow is: **Upload images or folders → Detect faces → Crop instantly.**
 
+🚀 Link: https://facecropapp.netlify.app
 ---
 
 ### ✨ Key Features
